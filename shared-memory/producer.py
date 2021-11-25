@@ -1,21 +1,18 @@
-import pickle
+import pickle #using pickle for serializing the data stored in shared memory - converting it to a byte stream
 from multiprocessing import shared_memory
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.cron import CronTrigger
 
 scheduler = BlockingScheduler()
-sh_memory = shared_memory.SharedMemory(create=True, size=1000, name='weather-shared-memory')
+sh_memory = shared_memory.SharedMemory(create = True, size=1000, name = 'weather-shared-memory')
 
 @scheduler.scheduled_job(
     CronTrigger(year='*', month='*', day='*', week='*', day_of_week='*', hour='0', minute=0, second=0)
 )
 def train_model():
-    pass
     # Implement producer
     # fetch data from api
-
-
 
     # push to shared memory
     data = {'weather': '30degrees', 'humidity': 50}
@@ -27,7 +24,7 @@ def train_model():
         index += 1
 
 try:
-    scheduler.start()
+    train_model()
 except KeyboardInterrupt:
     sh_memory.close()
     sh_memory.unlink()

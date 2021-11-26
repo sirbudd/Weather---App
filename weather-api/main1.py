@@ -24,6 +24,7 @@ data_weather = req.json()
 if data_weather['cod'] == 200:
     temperature = float(data_weather['main']['temp'])
     temperature = temperature - 273.15 # converting to celsius
+    
     humidity = data_weather['main']['humidity']
     
     print("Temperature : {:0.2f}ºC.".format(temperature))

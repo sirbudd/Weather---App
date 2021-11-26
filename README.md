@@ -7,4 +7,4 @@ Weather App - Project
 2. 
 3. 
 
-In the early stages was built using "modules"
+In the early stages the app was built using "modules"

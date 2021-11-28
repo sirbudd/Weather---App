@@ -20,7 +20,6 @@ def open_cfg():
 def get_weather(config):
     """
     Function for connecting to OpenWeather Api
-
     """
     
     config = open_cfg() #accessing necessary information from our cfg file
@@ -52,10 +51,11 @@ def get_weather(config):
     if data_weather['cod'] == 200:
         temperature = float(data_weather['main']['temp'])
         temperature = temperature - 273.15 # converting to Celsius
-    
+        temperature = "{:.2f}".format(temperature)
+        temperature = float(temperature)
         humidity = data_weather['main']['humidity']
     
-        print("Temperature : {:0.2f}ºC.".format(temperature))
+        print("Temperature : ", temperature)
         print("Humidity : ",humidity)
 
         return {'temperature': temperature, 'humidity': humidity} #return our data as a dictionary for easier readability
@@ -78,13 +78,14 @@ def producer():
     """
     try:
         config = open_cfg()
-        #print(config)
+        
         sh_memory = shared_memory.SharedMemory(create = True, size = config['sh_size'] , name = 'weather-shared-memory')   #creating out shared memory, configurable size
+        
         data = get_weather(config)   #getting our weather info
         if not data:                 #checking if the data is valid
             return
         push_data(data, sh_memory)   #calling our function to push our data to shared memory
-        time.sleep(config['time_to_sleep'])     #configurable time to keep the shared memory saved in memory
+        time.sleep(config['time_to_sleep'])     #configurable time to keep the shared memory saved in memory in SECONDS
     except KeyboardInterrupt:
         sh_memory.close()
         sh_memory.unlink()

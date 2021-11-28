@@ -1,0 +1,18 @@
+2021-11-28 20:23:43,941:INFO:{'old_temperature': 3.7800000000000296, 'old_humidity': 87}
+2021-11-28 20:25:02,845:INFO:{'temperature': 10.310000000000002, 'humidity': 75}
+2021-11-28 20:26:47,083:INFO:{'temperature': 10.310000000000002, 'humidity': 75}
+2021-11-28 20:26:47,083:INFO:braila
+2021-11-28 20:44:05,939:INFO:{'temperature': 8.310000000000002, 'humidity': 76}
+2021-11-28 20:44:05,939:INFO:braila
+2021-11-28 20:57:17,857:INFO:braila
+2021-11-28 20:57:17,858:INFO:{'temperature': '8.31', 'humidity': 76}
+2021-11-28 20:57:46,615:INFO:braila
+2021-11-28 20:57:46,615:INFO:{'temperature': '8.31', 'humidity': 76}
+2021-11-28 21:00:06,317:INFO:braila
+2021-11-28 21:00:06,317:INFO:{'temperature': '8.31', 'humidity': 76}
+2021-11-28 21:00:38,315:INFO:braila
+2021-11-28 21:00:38,315:INFO:{'temperature': '8.31', 'humidity': 76}
+2021-11-28 21:03:30,755:INFO:braila
+2021-11-28 21:03:30,755:INFO:{'temperature': 8.31, 'humidity': 76}
+2021-11-28 21:03:52,451:INFO:braila
+2021-11-28 21:03:52,451:INFO:{'temperature': 8.31, 'humidity': 76}

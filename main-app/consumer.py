@@ -1,11 +1,11 @@
 import pickle
-import time
-import requests
 import json   
 from multiprocessing import shared_memory
 import smtplib
+import logging
 
-#TODO IMPLEMENT CRONTAB
+
+logging.basicConfig(filename='logs.log', level=logging.INFO,format='%(asctime)s:%(levelname)s:%(message)s') #logging file config
 
 
 def open_cfg():
@@ -21,16 +21,15 @@ def open_cfg():
 def send_email():
     config = open_cfg()
 
-    with open('old_data.pickle', 'rb') as file:                                     #opening the old Temp & Humidity data
+    with open('old_data.pickle', 'rb') as file:   #opening the old Temp & Humidity data
         old_weather = pickle.load(file)
     
     sender = config['sender_email_address']
-    password = config['sender_password']
-
-    receiver = config['receiver_email_address']     #account login info
+    password = config['sender_password']          #account login info for sender & receiver
+    receiver = config['receiver_email_address']     
     
-    subject = "Weather App Warning - High Delta"                                    #email title
-    body = "Attention! Temperature or Humidity delta too big! New Temp & Humidity : " ,old_weather['old_temperature'],old_weather['old_humidity']  #email subject
+    subject = "Weather App Warning - High Delta" #email title
+    body = "Attention! Temperature or Humidity delta too big! New Temp & Humidity : " ,old_weather['old_temperature'],old_weather['old_humidity']  #email text
 
     # header
     message = f"""From: Weather {sender}
@@ -59,27 +58,28 @@ def consumer():
     sh_memory = shared_memory.SharedMemory('weather-shared-memory')                 #accessing our shared memory created by the producer.
 
     with open('old_data.pickle', 'rb') as file:                                     #opening the old Temp & Humidity data
-        old_weather = pickle.load(file)
+        old_weather = pickle.load(file)                                             #we're using it for delta comparison
+    
     print(old_weather)
 
-    weather = pickle.loads(bytearray(sh_memory.buf[:]))                             # buf for copying the data into a new array
+    weather = pickle.loads(bytearray(sh_memory.buf[:]))                             #buf for copying the data into a new array
     print(weather)                                                                  #print our data, dictionary format : {temperature : X ; humidity : Y}
 
     current_temperature = weather['temperature']                                                 
-    current_humidity = weather['humidity']                                          #saving our old data in a dictinary for pickling
-    current_weather = {"old_temperature" : current_temperature, "old_humidity" : current_humidity}     
+    current_humidity = weather['humidity']                                          #saving our newly generated data in a dictinary for pickling
+    current_weather = {"old_temperature" : current_temperature, "old_humidity" : current_humidity}     #this information becomes the old data
+
+    logging.info(config['city'])
+    logging.info(weather)               #logging the current generated weather info
 
     temperature_delta = current_temperature - old_weather['old_temperature']
-    humidity_delta = current_humidity - old_weather['old_humidity']
+    humidity_delta = current_humidity - old_weather['old_humidity']                 #calculatig the delta between current & old weather data
     threshold = config['threshold']
-    
-    if threshold is not int:
-        quit()
     
     with open('old_data.pickle','wb') as file:
         pickle.dump(current_weather, file)                                          #writing our new data for delta comparison
     
-    if temperature_delta > threshold or humidity_delta > threshold:
+    if temperature_delta > threshold or humidity_delta > threshold:                 # if delta > threshold sned warning email
         send_email()
     
     sh_memory.close()

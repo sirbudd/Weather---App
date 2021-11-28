@@ -1,0 +1,12 @@
+{
+    "city": "suceava",
+    "api_key" : "1802c892bb5f02f5ed354ddd4ee2ba89",
+    "root_url" : "http://api.openweathermap.org/data/2.5/weather?",
+    "time_to_sleep" : 15,
+    "sh_size" : 1000,
+    "sender_email_address" : "weather.app.test.python@gmail.com",
+    "receiver_email_address" : "dragos.daniel199@gmail.com",
+    "sender_password" : "Zalman123"
+
+
+}

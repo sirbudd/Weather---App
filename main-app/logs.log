@@ -16,3 +16,7 @@
 2021-11-28 21:03:30,755:INFO:{'temperature': 8.31, 'humidity': 76}
 2021-11-28 21:03:52,451:INFO:braila
 2021-11-28 21:03:52,451:INFO:{'temperature': 8.31, 'humidity': 76}
+2021-11-28 23:04:30,302:INFO:braila
+2021-11-28 23:04:30,302:INFO:{'temperature': 10.31, 'humidity': 75}
+2021-11-28 23:05:19,467:INFO:braila
+2021-11-28 23:05:19,467:INFO:{'temperature': 10.31, 'humidity': 75}

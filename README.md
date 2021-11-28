@@ -28,3 +28,4 @@ The `"cron_time_minutes_producer"` and `"cron_time_minutes_consumer"` parameter 
 
 The `"linux_user"` parameter is for configuring your linux user for crontab jobs, you can use `whoami` to find your user name.
 
+### To run the app 

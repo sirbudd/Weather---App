@@ -72,10 +72,13 @@ def consumer():
     temperature_delta = current_temperature - old_weather['old_temperature']
     humidity_delta = current_humidity - old_weather['old_humidity']
     threshold = config['threshold']
-
+    
+    if threshold is not int:
+        quit()
+    
     with open('old_data.pickle','wb') as file:
         pickle.dump(current_weather, file)                                          #writing our new data for delta comparison
-
+    
     if temperature_delta > threshold or humidity_delta > threshold:
         send_email()
     

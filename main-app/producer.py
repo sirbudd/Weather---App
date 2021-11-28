@@ -72,18 +72,23 @@ def push_data(data, memory):
 
 
 def producer():
+    """
+    Driver function. Collecting oud weather data and pushing it to shared memory.
+
+    """
     try:
         config = open_cfg()
         #print(config)
-        sh_memory = shared_memory.SharedMemory(create = True, size = config['sh_size'] , name = 'weather-shared-memory')
-        data = get_weather(config)
-        if not data:
+        sh_memory = shared_memory.SharedMemory(create = True, size = config['sh_size'] , name = 'weather-shared-memory')   #creating out shared memory, configurable size
+        data = get_weather(config)   #getting our weather info
+        if not data:                 #checking if the data is valid
             return
-        push_data(data, sh_memory)
-        time.sleep(config['time_to_sleep'])
+        push_data(data, sh_memory)   #calling our function to push our data to shared memory
+        time.sleep(config['time_to_sleep'])     #configurable time to keep the shared memory saved in memory
     except KeyboardInterrupt:
         sh_memory.close()
         sh_memory.unlink()
+
 
 if __name__ == '__main__':
     producer()

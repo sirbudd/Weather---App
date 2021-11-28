@@ -10,6 +10,6 @@ Weather App - Project
 
 In the early stages the app was built using "modules" which can be found in the Modules folder
 
-#Running the app
+## Running the app
 
 

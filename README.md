@@ -14,12 +14,17 @@ In the early stages the app was built using "modules" which can be found in the 
 
 First open `cfg.json` and edit it for your needs.
 
+The `"city"` parameter is for configuring your city.
+
 The `"sender_email_address"` , `"sender_password"` ,`"root_url"`, `"api_key"` can be left as is.
 
 The `"time_to_sleep"` parameter is for configuring how many seconds you want your shared memory block to remain assigned.
 
 The `"sh_size"` parameter is for configuring your shared memory size in bytes.
 
-The `"city"` parameter is for configuring your city.
+The `"threshold"` parameter is for configuring your delta threshold for temperature & humidity.
 
+The `"cron_time_minutes_producer"` and `"cron_time_minutes_consumer"` parameter is for configuring your producer/consumer repat time for your cronjobs in minutes.
+
+The `"linux_user"` parameter is for configuring your linux user for crontab jobs, you can use `whoami` to find your user name.
 

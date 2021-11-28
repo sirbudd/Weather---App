@@ -45,7 +45,7 @@ def send_email():
         server.login(sender,password)
         print("Logged in...")
         server.sendmail(sender, receiver, message)
-        print("Email has been sent!")
+        print("Delta too high. Email has been sent!")
     except smtplib.SMTPAuthenticationError:
         print("Unable to sign in")
 

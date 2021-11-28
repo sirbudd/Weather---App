@@ -12,7 +12,7 @@ In the early stages the app was built using "modules" which can be found in the 
 
 ## Running the app
 
-First open `cfg.json` and edit it for your needs.\n
+First open `cfg.json` and edit it for your needs. \n
 The `"sender_email_address"` and `"sender_password"` can be left as is
 
 

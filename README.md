@@ -1,7 +1,7 @@
 # Weather---App
 Weather App - Project
 
-# Libriaries/Frameworks used
+## Libriaries/Frameworks used
 
 1. [Pickle](https://docs.python.org/3/library/pickle.html)
     - `pip install pickle`

@@ -85,7 +85,7 @@ def producer():
         if not data:                 #checking if the data is valid
             return
         push_data(data, sh_memory)   #calling our function to push our data to shared memory
-        time.sleep(config['time_to_sleep'])     #configurable time to keep the shared memory saved in memory in SECONDS
+        time.sleep(config['time_to_sleep_seconds'])     #configurable time to keep the shared memory saved in memory in SECONDS
     except KeyboardInterrupt:
         sh_memory.close()
         sh_memory.unlink()

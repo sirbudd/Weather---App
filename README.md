@@ -10,7 +10,7 @@ Weather App - Project
 
 In the early stages the app was built using "modules" which can be found in the Modules folder
 
-## Running the app
+## Configuring you parameters
 
 First open `cfg.json` and edit it for your needs.
 
@@ -28,4 +28,10 @@ The `"cron_time_minutes_producer"` and `"cron_time_minutes_consumer"` parameter 
 
 The `"linux_user"` parameter is for configuring your linux user for crontab jobs, you can use `whoami` to find your user name.
 
-### To run the app 
+## Running the app
+
+Run `python3 producer.py` then `python3 consumer.py`. 
+
+The producer will connect to the Weather API (Open Weather) and store your data in a shared memory block.
+
+The consumer will read this data, log it inside `logs.log`, send an email if the delta is too high, and close the sahred memory block.

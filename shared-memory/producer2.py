@@ -17,7 +17,7 @@ def open_cfg():
     return data
 
 
-def get_weather():
+def get_weather(config):
     """
     Function for connecting to OpenWeather Api
 

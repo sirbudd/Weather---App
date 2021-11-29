@@ -82,6 +82,7 @@ def consumer():
     if temperature_delta > threshold or humidity_delta > threshold:                 # if delta > threshold sned warning email
         send_email()
     
+    print("Closing & unlinking memory.")
     sh_memory.close()
     sh_memory.unlink()
 

@@ -86,6 +86,7 @@ def producer():
             return
         push_data(data, sh_memory)   #calling our function to push our data to shared memory
         time.sleep(config['time_to_sleep_seconds'])     #configurable time to keep the shared memory saved in memory in SECONDS
+        print("Producer shared memory closed after %d seconds" % config['time_to_sleep_seconds'])
     except KeyboardInterrupt:
         sh_memory.close()
         sh_memory.unlink()

@@ -22,3 +22,13 @@
 2021-11-28 23:05:19,467:INFO:{'temperature': 10.31, 'humidity': 75}
 2021-11-28 23:42:40,124:INFO:milano
 2021-11-28 23:42:40,125:INFO:{'temperature': 1.06, 'humidity': 93}
+2021-11-28 23:44:00,680:INFO:milano
+2021-11-28 23:44:00,681:INFO:{'temperature': 1.06, 'humidity': 93}
+2021-11-28 23:44:24,383:INFO:budapest
+2021-11-28 23:44:24,383:INFO:{'temperature': 4.29, 'humidity': 93}
+2021-11-29 09:49:13,867:INFO:budapest
+2021-11-29 09:49:13,868:INFO:{'temperature': 3.29, 'humidity': 81}
+2021-11-29 09:51:43,575:INFO:budapest
+2021-11-29 09:51:43,575:INFO:{'temperature': 3.29, 'humidity': 81}
+2021-11-29 09:55:16,249:INFO:budapest
+2021-11-29 09:55:16,250:INFO:{'temperature': 3.29, 'humidity': 81}

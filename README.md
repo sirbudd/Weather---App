@@ -43,5 +43,7 @@ The consumer will read this data, log it inside `logs.log`, send an email if the
 ## Adding cronjobs
 
 If you want to add those 2 python scripts to your crontab run `cronjob.py`.
+
 Run `crontab -l` in your terminal to check if they have been added.
+
 Run `crontab -r` to remove all cronjobs from your crontab

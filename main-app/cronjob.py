@@ -19,8 +19,8 @@ config = open_cfg()
 
 cron = CronTab(user=config['linux_user']) #your linux user
 
-job1 = cron.new(command='python /home/sirbudd/Desktop/Github/Weather---App/main-app/consumer.py')  #add new job for consumer.py
-job2 = cron.new(command='python /home/sirbudd/Desktop/Github/Weather---App/main-app/producer.py')  #add new job for producer.py
+job1 = cron.new(command='python consumer.py')  #add new job for consumer.py
+job2 = cron.new(command='python producer.py')  #add new job for producer.py
 
 job1.minute.every(config['cron_time_minutes_producer'])       #set cronjob time to repeat after in minutes
 job2.minute.every(config['cron_time_minutes_consumer'])

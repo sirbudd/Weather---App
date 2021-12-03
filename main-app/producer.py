@@ -4,8 +4,6 @@ import requests
 import json   
 from multiprocessing import shared_memory
 
-#TODO IMPLEMENT CRONTAB
-
 
 def open_cfg():
     """

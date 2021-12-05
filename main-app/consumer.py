@@ -3,6 +3,8 @@ import json
 from multiprocessing import shared_memory
 import smtplib
 import logging
+import time
+import requests
 
 
 logging.basicConfig(filename='logs.log', level=logging.INFO,format='%(asctime)s:%(levelname)s:%(message)s') #logging file config

@@ -5,50 +5,27 @@ import json
 from multiprocessing import shared_memory
 from my_functions import *
 
-# def open_cfg():
-#     """
-#     Function for opening the cfg file.
-#     """
-#     jsonfile =  open("cfg.json", "r")
-#     data = json.load(jsonfile)
-    
-#     return data
-
 
 def get_weather(config):
     """
     Function for connecting to OpenWeather Api
     """
     
-    config = open_cfg() #accessing necessary information from our cfg file
     api_key = config['api_key']
     root_url = config['root_url']
     city_name = config['city']
 
-    #print(type(city_name))
-
     print(city_name)
 
-    # Building the final url for the API call
-    url = f"{root_url}appid={api_key}&q={city_name}"
-    # sending a get request at the url
-    req = requests.get(url)
-
-    
-    # checking wether the information was fetched
-    if not req.status_code == 200:
-        print('The weather could not be fetched. Try rerunning the app or check your cfg.sjon file')
-        return
-
-
-    #print(req.json()) # --> print all the info fetched from the api
+    url = f"{root_url}appid={api_key}&q={city_name}"     # Building the final url for the API call
+    req = requests.get(url)     # sending a get request at the url
 
     data_weather = req.json()
 
     # if the information was fetched we proceed to access only the required information : temperature + humidity
     if data_weather['cod'] == 200:
-        temperature = float(data_weather['main']['temp'])
-        temperature = temperature - 273.15 # converting to Celsius
+        temperature = float(data_weather['main']['temp']) - 273.15
+        #temperature = temperature - 273.15 # converting to Celsius
         temperature = "{:.2f}".format(temperature)
         temperature = float(temperature)
         humidity = data_weather['main']['humidity']
@@ -57,6 +34,9 @@ def get_weather(config):
         print("Humidity : ",humidity)
 
         return {'temperature': temperature, 'humidity': humidity} #return our data as a dictionary for easier readability
+    else:
+        print('The weather could not be fetched. Try rerunning the app or check your cfg.sjon file')
+
 
 
 def push_data(data, memory):

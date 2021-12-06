@@ -1,19 +1,9 @@
 #\#!/bin/env python
 import json   
 from crontab import CronTab
+from my_functions import *
 
 #Run this script to add consumer.py & producer.py to your crontab list
-
-
-def open_cfg():
-    """
-    Function for opening the cfg file.
-    """
-    jsonfile =  open("cfg.json", "r")
-    data = json.load(jsonfile)
-    
-    return data
-
 
 config = open_cfg()
 

@@ -34,3 +34,5 @@
 2021-11-29 09:55:16,250:INFO:{'temperature': 3.29, 'humidity': 81}
 2021-12-02 19:44:25,639:INFO:budapest
 2021-12-02 19:44:25,640:INFO:{'temperature': 5.72, 'humidity': 96}
+2021-12-06 13:30:30,291:INFO:iasi
+2021-12-06 13:30:30,291:INFO:{'temperature': 4.23, 'humidity': 93}

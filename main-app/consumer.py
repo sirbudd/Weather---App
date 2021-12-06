@@ -3,21 +3,10 @@ import json
 from multiprocessing import shared_memory
 import smtplib
 import logging
-import time
-import requests
+from my_functions import *
 
 
 logging.basicConfig(filename='logs.log', level=logging.INFO,format='%(asctime)s:%(levelname)s:%(message)s') #logging file config
-
-
-def open_cfg():
-    """
-    Function for opening the cfg file.
-    """
-    jsonfile =  open("cfg.json", "r")
-    data = json.load(jsonfile)
-    
-    return data
 
 
 def send_email():

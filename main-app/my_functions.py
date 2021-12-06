@@ -1,6 +1,5 @@
 import json   
 from multiprocessing import shared_memory
-import os
 
 #separate file for functions that are used globally
 
@@ -22,6 +21,3 @@ def open_cfg():
 
     
     return data
-
-
-print(os.getlogin())

@@ -4,9 +4,10 @@ from crontab import CronTab
 import os
 from my_functions import *
 
-config = open_cfg()
-
 #Run this script to add consumer.py & producer.py to your crontab list
+
+
+config = open_cfg()
 
 print('Do you want to add new jobs (press 1) or delete the existing ones & start new (press 2)')
 

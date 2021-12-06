@@ -49,7 +49,6 @@ def producer():
     Driver function. Collecting oud weather data and pushing it to shared memory.
     Expected input : shared memory parameters, weather data from get_weather function
     Expected output : data serialized & pushed to shared memory
-
     """
     try:
         config = open_cfg()

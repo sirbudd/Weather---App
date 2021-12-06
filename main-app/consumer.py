@@ -14,7 +14,7 @@ config = open_cfg()
 def send_email():
     """
     Function that connects to a given SMTP (google, in our case) and sends an email
-    Expected input : data from old_wdata.pickle
+    Expected input : data from old_data.pickle
     Expected output : succesfull email sent
     """
     try:

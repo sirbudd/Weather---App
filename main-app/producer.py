@@ -13,7 +13,7 @@ def get_weather(config):
     """
     Function for connecting to OpenWeather Api
     Expected input : data fetched from the OpenWeather API
-    Expected output : return an dictionary containing the weather data 
+    Expected output : return an dictionary containing the weather data     
     """
     api_key = config['api_key']
     root_url = config['root_url']

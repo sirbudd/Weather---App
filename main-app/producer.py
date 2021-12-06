@@ -9,6 +9,8 @@ from my_functions import *
 def get_weather(config):
     """
     Function for connecting to OpenWeather Api
+    Expected input : data fetched from the OpenWeather API
+    Expected output : return an dictionary containing the weather data 
     """
     
     api_key = config['api_key']
@@ -46,12 +48,13 @@ def push_data(data, memory):
     data = pickle.dumps(data)
     size = len(data)
     memory.buf[:size] = data
-    print('pushed to shared memory')
 
 
 def producer():
     """
     Driver function. Collecting oud weather data and pushing it to shared memory.
+    Expected input : shared memory parameters, weather data from get_weather function
+    Expected output : data serialized & pushed to shared memory
 
     """
     try:

@@ -70,8 +70,9 @@ def consumer():
     
     if temperature_delta > threshold or humidity_delta > threshold:                 # if delta > threshold sned warning email
         send_email()
+        logging.info("Email has been sent")
     
-    logging.info("Shared memory closed")
+    logging.info("Shared memory closed\n==========")
     sh_memory.close()
     sh_memory.unlink()
 

@@ -1,13 +1,14 @@
 #\#!/bin/env python
 import json   
 from crontab import CronTab
+import os
 from my_functions import *
 
 #Run this script to add consumer.py & producer.py to your crontab list
 
 config = open_cfg()
 
-cron = CronTab(user=config['linux_user']) #your linux user
+cron = CronTab(user=os.getlogin()) #your linux user
 
 job1 = cron.new(command='python consumer.py')  #add new job for consumer.py
 job2 = cron.new(command='python producer.py')  #add new job for producer.py

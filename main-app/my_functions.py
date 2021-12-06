@@ -1,8 +1,6 @@
-import pickle
 import json   
 from multiprocessing import shared_memory
-import smtplib
-import logging
+import os
 
 #separate file for functions that are used globally
 
@@ -22,16 +20,8 @@ def open_cfg():
     except ValueError:
         print('City must be a string')
 
+    
     return data
 
-    
-#     return data
 
-# def open_cfg():
-#     """
-#     Function for opening the cfg file.
-#     """
-#     jsonfile =  open("cfg.json", "r")
-#     data = json.load(jsonfile)
-    
-#     return data
+print(os.getlogin())

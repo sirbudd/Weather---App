@@ -48,3 +48,18 @@
 2021-12-06 13:49:32,150:INFO:{'temperature': 4.29, 'humidity': 100}
 2021-12-06 13:49:55,394:INFO:iasi
 2021-12-06 13:49:55,394:INFO:{'temperature': 4.29, 'humidity': 100}
+2021-12-06 13:53:19,426:INFO:iasi
+2021-12-06 13:53:19,427:INFO:{'temperature': 4.29, 'humidity': 100}
+2021-12-06 13:53:19,427:INFO:Shared memory closed
+2021-12-06 13:54:20,412:INFO:iasi
+2021-12-06 13:54:20,412:INFO:{'temperature': 4.29, 'humidity': 100}
+2021-12-06 13:54:20,412:INFO:Shared memory closed
+==========
+2021-12-06 13:54:38,637:INFO:iasi
+2021-12-06 13:54:38,637:INFO:{'temperature': 4.29, 'humidity': 100}
+2021-12-06 13:54:38,638:INFO:Shared memory closed
+==========
+2021-12-06 13:55:43,271:INFO:iasi
+2021-12-06 13:55:43,272:INFO:{'temperature': 4.29, 'humidity': 100}
+2021-12-06 13:55:43,272:INFO:Shared memory closed
+==========

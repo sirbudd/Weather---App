@@ -5,11 +5,13 @@ import smtplib
 import logging
 from my_functions import *
 
-
 logging.basicConfig(filename='logs.log', level=logging.INFO,format='%(asctime)s:%(levelname)s:%(message)s') #logging file config
 
 
 def send_email():
+    """
+    Function that connects to a given SMTP (google, in our case) and sends an email
+    """
     config = open_cfg()
 
     with open('old_data.pickle', 'rb') as file:   #opening the old Temp & Humidity data
@@ -26,8 +28,7 @@ def send_email():
     message = f"""From: Weather {sender}
     To: {receiver}
     Subject: {subject}\n
-    {body}
-    """
+    {body}"""
 
     server = smtplib.SMTP("smtp.gmail.com", 587)    #connect to google SMTP
     server.starttls()
@@ -51,10 +52,7 @@ def consumer():
     with open('old_data.pickle', 'rb') as file:                                     #opening the old Temp & Humidity data
         old_weather = pickle.load(file)                                             #we're using it for delta comparison
     
-    print(old_weather)
-
     weather = pickle.loads(bytearray(sh_memory.buf[:]))                             #buf for copying the data into a new array
-    print(weather)                                                                  #print our data, dictionary format : {temperature : X ; humidity : Y}
 
     current_temperature = weather['temperature']                                                 
     current_humidity = weather['humidity']                                          #saving our newly generated data in a dictinary for pickling
@@ -62,7 +60,7 @@ def consumer():
 
     logging.info(config['city'])
     logging.info(weather)               #logging the current generated weather info
-
+    
     temperature_delta = current_temperature - old_weather['old_temperature']
     humidity_delta = current_humidity - old_weather['old_humidity']                 #calculatig the delta between current & old weather data
     threshold = config['threshold']
@@ -73,11 +71,10 @@ def consumer():
     if temperature_delta > threshold or humidity_delta > threshold:                 # if delta > threshold sned warning email
         send_email()
     
-    print("Closing & unlinking memory.")
+    logging.info("Shared memory closed")
     sh_memory.close()
     sh_memory.unlink()
 
 
 if __name__ == '__main__':
     consumer()
-    #send_email()

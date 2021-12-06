@@ -8,6 +8,7 @@
     "receiver_email_address" : "dragos.daniel199@gmail.com",
     "sender_password" : "Zalman123",
     "threshold" : 2,
+    "threshold_humidity" : 3,
     "cron_time_minutes_producer" : 15,
     "cron_time_minutes_consumer" : 16,
     "linux_user" : "sirbudd"

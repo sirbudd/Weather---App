@@ -24,11 +24,9 @@ The `"time_to_sleep"` parameter is for configuring how many seconds you want you
 
 The `"sh_size"` parameter is for configuring your shared memory size in bytes.
 
-The `"threshold"` parameter is for configuring your delta threshold for temperature & humidity.
+The `"threshold"` parameters are for configuring your delta threshold for temperature & humidity.
 
 The `"cron_time_minutes_producer"` and `"cron_time_minutes_consumer"` parameter is for configuring your producer/consumer repat time for your cronjobs in minutes.
-
-The `"linux_user"` parameter is for configuring your linux user for crontab jobs, you can use `whoami` to find your user name.
 
 ## Running the app
 

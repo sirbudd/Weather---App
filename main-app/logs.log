@@ -8,3 +8,15 @@
 2021-12-06 16:56:57,947:INFO:Shared memory closed
 2021-12-06 16:57:09,982:INFO:Producer shared memory closed after 15 seconds
 ================
+2021-12-06 17:14:02,520:INFO:monaco
+2021-12-06 17:14:02,521:INFO:{'temperature': 12.8, 'humidity': 42}
+2021-12-06 17:14:04,320:INFO:Email has been sent
+2021-12-06 17:14:04,320:INFO:Shared memory closed
+2021-12-06 17:14:15,110:INFO:Producer shared memory closed after 15 seconds
+================
+2021-12-06 17:14:27,978:ERROR:The weather could not be fetched. Try rerunning the app or check your cfg.json file
+2021-12-06 17:16:16,463:INFO:monaco
+2021-12-06 17:16:16,464:INFO:{'temperature': 12.8, 'humidity': 42}
+2021-12-06 17:16:16,465:INFO:Shared memory closed
+2021-12-06 17:16:28,441:INFO:Producer shared memory closed after 15 seconds
+================

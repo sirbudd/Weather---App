@@ -2,9 +2,12 @@ import pickle
 from multiprocessing import shared_memory
 import smtplib
 import logging
+import warnings
 from my_functions import *
 
+warnings.filterwarnings("ignore")
 logging.basicConfig(filename='logs.log', level=logging.INFO,format='%(asctime)s:%(levelname)s:%(message)s') #logging file config
+
 config = open_cfg()
 
 
@@ -18,7 +21,7 @@ def send_email():
         with open('old_data.pickle', 'rb') as file:   #opening the old Temp & Humidity data
             old_weather = pickle.load(file)
     except:
-        print("Pickled data couldn't be deserialized")
+        logging.error("Pickled data couldn't be deserialized")
 
     sender = config['sender_email_address']
     password = config['sender_password']          #account login info for sender & receiver
@@ -40,7 +43,7 @@ def send_email():
         server.login(sender,password)
         server.sendmail(sender, receiver, message)
     except smtplib.SMTPAuthenticationError:
-        logging.info("Unable to sign in, check your credentials")
+        logging.error("Unable to sign in, check your credentials")
 
 
 def consumer():
@@ -56,7 +59,7 @@ def consumer():
             old_weather = pickle.load(file)                                             #we're using it for delta comparison
         weather = pickle.loads(bytearray(sh_memory.buf[:]))                             #buf for copying the data into a new array
     except:
-        print("Pickled data couldn't be deserialized")    
+        logging.error("Pickled data couldn't be deserialized")    
     
     current_temperature = weather['temperature']                                                 
     current_humidity = weather['humidity']                                          #saving our newly generated data in a dictinary for pickling
@@ -81,7 +84,7 @@ def consumer():
             send_email()
             logging.info("Email has been sent")
     except ValueError:
-        print("Check your .cfg threshold values")
+        logging.error("Check your .cfg threshold values")
     
     sh_memory.close()
     sh_memory.unlink()

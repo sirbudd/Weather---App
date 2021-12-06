@@ -3,8 +3,10 @@ import time
 import requests
 import logging   
 from multiprocessing import shared_memory
+import warnings
 from my_functions import *
 
+warnings.filterwarnings("ignore")
 logging.basicConfig(filename='logs.log', level=logging.INFO,format='%(asctime)s:%(levelname)s:%(message)s') #logging file config
 
 
@@ -30,7 +32,7 @@ def get_weather(config):
 
         return {'temperature': temperature, 'humidity': humidity} #return our data as a dictionary for easier readability
     else:
-        print('The weather could not be fetched. Try rerunning the app or check your cfg.json file')
+        logging.error('The weather could not be fetched. Try rerunning the app or check your cfg.json file')
 
 
 def push_data(data, memory):
@@ -64,7 +66,7 @@ def producer():
         sh_memory.close()
         sh_memory.unlink()
     except:
-        print("Check your sh_size, time_to_sleep_seconds cfg")
+        logging.error("Check your sh_size, time_to_sleep_seconds cfg")
 
 
 if __name__ == '__main__':

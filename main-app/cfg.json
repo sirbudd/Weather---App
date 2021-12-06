@@ -1,5 +1,5 @@
 {
-    "city": "iasi",
+    "city": "monaco",
     "api_key" : "1802c892bb5f02f5ed354ddd4ee2ba89",
     "root_url" : "http://api.openweathermap.org/data/2.5/weather?",
     "time_to_sleep_seconds" : 15,

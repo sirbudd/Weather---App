@@ -14,28 +14,23 @@ def get_weather(config):
     Expected input : data fetched from the OpenWeather API
     Expected output : return an dictionary containing the weather data 
     """
-    
     api_key = config['api_key']
     root_url = config['root_url']
     city_name = config['city']
-
     url = f"{root_url}appid={api_key}&q={city_name}"     # Building the final url for the API call
     req = requests.get(url)     # sending a get request at the url
 
     data_weather = req.json()
 
-    # if the information was fetched we proceed to access only the required information : temperature + humidity
-    if data_weather['cod'] == 200:
+    if data_weather['cod'] == 200: # if the information was fetched we proceed to access only the required information : temperature + humidity
         temperature = float(data_weather['main']['temp']) - 273.15
-        #temperature = temperature - 273.15 # converting to Celsius
         temperature = "{:.2f}".format(temperature)
         temperature = float(temperature)
         humidity = data_weather['main']['humidity']
 
         return {'temperature': temperature, 'humidity': humidity} #return our data as a dictionary for easier readability
     else:
-        print('The weather could not be fetched. Try rerunning the app or check your cfg.sjon file')
-
+        print('The weather could not be fetched. Try rerunning the app or check your cfg.json file')
 
 
 def push_data(data, memory):

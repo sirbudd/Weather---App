@@ -1,5 +1,4 @@
 import pickle
-import json   
 from multiprocessing import shared_memory
 import smtplib
 import logging
@@ -15,10 +14,12 @@ def send_email():
     Expected input : data from old_wdata.pickle
     Expected output : succesfull email sent
     """
+    try:
+        with open('old_data.pickle', 'rb') as file:   #opening the old Temp & Humidity data
+            old_weather = pickle.load(file)
+    except:
+        print("Pickled data couldn't be deserialized")
 
-    with open('old_data.pickle', 'rb') as file:   #opening the old Temp & Humidity data
-        old_weather = pickle.load(file)
-    
     sender = config['sender_email_address']
     password = config['sender_password']          #account login info for sender & receiver
     receiver = config['receiver_email_address']     
@@ -49,12 +50,14 @@ def consumer():
     Expected output : inside logs.log : city name, weather info, state of email, state of memory
     """
     sh_memory = shared_memory.SharedMemory('weather-shared-memory')                 #accessing our shared memory created by the producer.
-
-    with open('old_data.pickle', 'rb') as file:                                     #opening the old Temp & Humidity data
-        old_weather = pickle.load(file)                                             #we're using it for delta comparison
     
-    weather = pickle.loads(bytearray(sh_memory.buf[:]))                             #buf for copying the data into a new array
-
+    try:
+        with open('old_data.pickle', 'rb') as file:                                     #opening the old Temp & Humidity data
+            old_weather = pickle.load(file)                                             #we're using it for delta comparison
+        weather = pickle.loads(bytearray(sh_memory.buf[:]))                             #buf for copying the data into a new array
+    except:
+        print("Pickled data couldn't be deserialized")    
+    
     current_temperature = weather['temperature']                                                 
     current_humidity = weather['humidity']                                          #saving our newly generated data in a dictinary for pickling
     current_weather = {"old_temperature" : current_temperature, "old_humidity" : current_humidity}     #this information becomes the old data
@@ -70,16 +73,19 @@ def consumer():
     with open('old_data.pickle','wb') as file:
         pickle.dump(current_weather, file)                                          #writing our new data for delta comparison
     
-    if temperature_delta > threshold_temperature:                 # if delta > threshold sned warning email
-        send_email()
-        logging.info("Email has been sent")
-    elif humidity_delta > threshold_humidity:
-        send_email()
-        logging.info("Email has been sent")
+    try:
+        if temperature_delta > threshold_temperature:                 # if delta > threshold sned warning email
+            send_email()
+            logging.info("Email has been sent")
+        elif humidity_delta > threshold_humidity:
+            send_email()
+            logging.info("Email has been sent")
+    except ValueError:
+        print("Check your .cfg threshold values")
     
     sh_memory.close()
     sh_memory.unlink()
-    logging.info("Shared memory closed\n================")
+    logging.info("Shared memory closed")
 
 
 if __name__ == '__main__':

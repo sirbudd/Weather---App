@@ -13,11 +13,10 @@ def open_cfg():
     except IOError:
         print("Failed to read JSON Config File")
     
-    try:
-        city_name = data['city']
-        city_name = str(city_name)
-    except ValueError:
-        print('City must be a string')
+    # try:
+    #     city_name = data['city']
+    # except TypeError:
+    #     print('City must be a string')
 
     
     return data

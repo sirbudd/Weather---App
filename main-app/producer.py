@@ -9,7 +9,6 @@ from my_functions import *
 warnings.filterwarnings("ignore")
 logging.basicConfig(filename='logs.log', level=logging.INFO,format='%(asctime)s:%(levelname)s:%(message)s') #logging file config
 
-
 def get_weather(config):
     """
     Function for connecting to OpenWeather Api
@@ -54,7 +53,6 @@ def producer():
         config = open_cfg()
         
         sh_memory = shared_memory.SharedMemory(create = True, size = config['sh_size'] , name = 'weather-shared-memory')   #creating out shared memory, configurable size
-        
         data = get_weather(config)   #getting our weather info
         if not data:                 #checking if the data is valid
             return
@@ -65,7 +63,7 @@ def producer():
         sh_memory.close()
         sh_memory.unlink()
     except:
-        logging.error("Check your sh_size, time_to_sleep_seconds cfg")
+        logging.error("Check your sh_size, time_to_sleep_seconds inside cfg.json")
 
 
 if __name__ == '__main__':

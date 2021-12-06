@@ -8,8 +8,7 @@ from my_functions import *
 warnings.filterwarnings("ignore")
 logging.basicConfig(filename='logs.log', level=logging.INFO,format='%(asctime)s:%(levelname)s:%(message)s') #logging file config
 
-config = open_cfg()
-
+config = open_cfg()  #open our config file
 
 def send_email():
     """
@@ -77,7 +76,7 @@ def consumer():
         pickle.dump(current_weather, file)                                          #writing our new data for delta comparison
     
     try:
-        if temperature_delta > threshold_temperature:                 # if delta > threshold sned warning email
+        if temperature_delta > threshold_temperature:                 # if delta > threshold send warning email
             send_email()
             logging.info("Email has been sent")
         elif humidity_delta > threshold_humidity:

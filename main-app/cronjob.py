@@ -23,8 +23,8 @@ if flag == 1:
     job2.minute.every(config['cron_time_minutes_consumer'])
     cron.write()
 
-    print(job1.is_valid())  #check if jobs are valid
-    print(job2.is_valid())
+    print("Job 1 is %r" % job1.is_valid())  #check if jobs are valid
+    print("Job 2 is %r" % job2.is_valid())
 
 elif flag == 2:
     cron = CronTab(user=os.getlogin()) #your linux user
@@ -39,5 +39,5 @@ elif flag == 2:
     job2.minute.every(config['cron_time_minutes_consumer'])
     cron.write()
 
-    print(job1.is_valid())  #check if jobs are valid
-    print(job2.is_valid())
+    print("Job 1 is %r" % job1.is_valid())  #check if jobs are valid
+    print("Job 2 is %r" % job2.is_valid())

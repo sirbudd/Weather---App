@@ -63,6 +63,8 @@ def producer():
     except KeyboardInterrupt:
         sh_memory.close()
         sh_memory.unlink()
+    except:
+        print("Check your sh_size, time_to_sleep_seconds cfg")
 
 
 if __name__ == '__main__':

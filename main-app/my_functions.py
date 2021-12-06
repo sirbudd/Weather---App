@@ -11,12 +11,5 @@ def open_cfg():
         jsonfile =  open("cfg.json", "r")
         data = json.load(jsonfile)
     except IOError:
-        print("Failed to read JSON Config File")
-    
-    # try:
-    #     city_name = data['city']
-    # except TypeError:
-    #     print('City must be a string')
-
-    
+        print("Failed to read JSON Config File")    
     return data

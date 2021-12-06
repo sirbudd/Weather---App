@@ -1,9 +1,11 @@
 import pickle
 import time
 import requests
-import json   
+import logging   
 from multiprocessing import shared_memory
 from my_functions import *
+
+logging.basicConfig(filename='logs.log', level=logging.INFO,format='%(asctime)s:%(levelname)s:%(message)s') #logging file config
 
 
 def get_weather(config):
@@ -17,8 +19,6 @@ def get_weather(config):
     root_url = config['root_url']
     city_name = config['city']
 
-    print(city_name)
-
     url = f"{root_url}appid={api_key}&q={city_name}"     # Building the final url for the API call
     req = requests.get(url)     # sending a get request at the url
 
@@ -31,9 +31,6 @@ def get_weather(config):
         temperature = "{:.2f}".format(temperature)
         temperature = float(temperature)
         humidity = data_weather['main']['humidity']
-    
-        print("Temperature : ", temperature)
-        print("Humidity : ",humidity)
 
         return {'temperature': temperature, 'humidity': humidity} #return our data as a dictionary for easier readability
     else:
@@ -67,7 +64,7 @@ def producer():
             return
         push_data(data, sh_memory)   #calling our function to push our data to shared memory
         time.sleep(config['time_to_sleep_seconds'])     #configurable time to keep the shared memory saved in memory in SECONDS
-        print("Producer shared memory closed after %d seconds" % config['time_to_sleep_seconds'])
+        logging.info("Producer shared memory closed after %d seconds\n================" % config['time_to_sleep_seconds'])
     except KeyboardInterrupt:
         sh_memory.close()
         sh_memory.unlink()

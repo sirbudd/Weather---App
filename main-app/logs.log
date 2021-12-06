@@ -8,3 +8,8 @@
 2021-12-06 16:20:26,903:INFO:Email has been sent
 2021-12-06 16:20:26,903:INFO:Shared memory closed
 ================
+2021-12-06 16:23:31,260:INFO:iasi
+2021-12-06 16:23:31,261:INFO:{'temperature': 4.28, 'humidity': 100}
+2021-12-06 16:23:31,261:INFO:Shared memory closed
+================
+2021-12-06 16:23:44,150:INFO:Producer shared memory closed after 15 seconds

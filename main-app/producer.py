@@ -3,16 +3,16 @@ import time
 import requests
 import json   
 from multiprocessing import shared_memory
+from my_functions import *
 
-
-def open_cfg():
-    """
-    Function for opening the cfg file.
-    """
-    jsonfile =  open("cfg.json", "r")
-    data = json.load(jsonfile)
+# def open_cfg():
+#     """
+#     Function for opening the cfg file.
+#     """
+#     jsonfile =  open("cfg.json", "r")
+#     data = json.load(jsonfile)
     
-    return data
+#     return data
 
 
 def get_weather(config):

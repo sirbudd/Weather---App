@@ -1,5 +1,5 @@
 {
-    "city": "monaco",
+    "city": "iasi",
     "api_key" : "1802c892bb5f02f5ed354ddd4ee2ba89",
     "root_url" : "http://api.openweathermap.org/data/2.5/weather?",
     "time_to_sleep_seconds" : 15,
@@ -7,8 +7,8 @@
     "sender_email_address" : "weather.app.test.python@gmail.com",
     "receiver_email_address" : "dragos.daniel199@gmail.com",
     "sender_password" : "Zalman123",
-    "threshold" : 2,
-    "threshold_humidity" : 3,
+    "threshold_temperature" : 2,
+    "threshold_humidity" : 10,
     "cron_time_minutes_producer" : 15,
     "cron_time_minutes_consumer" : 16
 }

@@ -6,13 +6,15 @@ import logging
 from my_functions import *
 
 logging.basicConfig(filename='logs.log', level=logging.INFO,format='%(asctime)s:%(levelname)s:%(message)s') #logging file config
+config = open_cfg()
 
 
 def send_email():
     """
     Function that connects to a given SMTP (google, in our case) and sends an email
+    Expected input : data from old_wdata.pickle
+    Expected output : succesfull email sent
     """
-    config = open_cfg()
 
     with open('old_data.pickle', 'rb') as file:   #opening the old Temp & Humidity data
         old_weather = pickle.load(file)
@@ -43,8 +45,9 @@ def send_email():
 def consumer():
     """
     Driver function. Deserialize our data, calculate weather deltas & send emails if necessarry
+    Expected input : weather data from shared memory produced by producer.py
+    Expected output : inside logs.log : city name, weather info, state of email, state of memory
     """
-    config = open_cfg()
     sh_memory = shared_memory.SharedMemory('weather-shared-memory')                 #accessing our shared memory created by the producer.
 
     with open('old_data.pickle', 'rb') as file:                                     #opening the old Temp & Humidity data
@@ -61,12 +64,16 @@ def consumer():
 
     temperature_delta = current_temperature - old_weather['old_temperature']
     humidity_delta = current_humidity - old_weather['old_humidity']                 #calculatig the delta between current & old weather data
-    threshold = config['threshold']
+    threshold_temperature = config['threshold_temperature']
+    threshold_humidity = config['threshold_humidity']
     
     with open('old_data.pickle','wb') as file:
         pickle.dump(current_weather, file)                                          #writing our new data for delta comparison
     
-    if temperature_delta > threshold or humidity_delta > threshold:                 # if delta > threshold sned warning email
+    if temperature_delta > threshold_temperature:                 # if delta > threshold sned warning email
+        send_email()
+        logging.info("Email has been sent")
+    elif humidity_delta > threshold_humidity:
         send_email()
         logging.info("Email has been sent")
     

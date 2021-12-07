@@ -6,6 +6,8 @@ from multiprocessing import shared_memory
 def open_cfg():
     """
     Function for opening the cfg file.
+    Expected input : correct parameters from the cfg.json file
+    Expected outpt : data loaded into data variable
     """
     try:
         jsonfile =  open("cfg.json", "r")
